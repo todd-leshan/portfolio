@@ -10,8 +10,8 @@ class Admin_Model extends CI_Model
 			'username' => $username,
 			'password' => sha1(md5($password)),	
 		);
-
 		$login = $this->db->get_where('admin',$condition);
+		
 		if($login->num_rows() == 1)
 		{
 			return true;

@@ -1,6 +1,6 @@
 <div id="wrapper">
 
-<form id="login_form" action="<?php echo site_url().'login/login_process'; ?>" method="post">
+<form id="login_form" action="<?php echo site_url().'/admin/personal'; ?>" method="post">
 	<span class="error">
 		<?php echo validation_errors(); ?>
 		<?php echo $error3; ?>

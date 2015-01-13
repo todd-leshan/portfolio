@@ -5,7 +5,6 @@ class Message_Model extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->database();
 	}
 
 	function addMessage($name, $phone, $email, $message)
@@ -24,7 +23,7 @@ class Message_Model extends CI_Model
 	{
 		$messages = $this->db->get('message');
 
-		if($messages->num_rows > 0)
+		if($messages->num_rows() > 0)
 		{
 			return $messages->result();
 		}else
@@ -32,6 +31,21 @@ class Message_Model extends CI_Model
 			return NULL;
 		}
 		
+	}
+
+	function getMessageForPagination($num_per_page, $offset)
+	{
+		
+		$this->db->order_by('messageID','DESC');
+		$messages = $this->db->get('message', $num_per_page, $offset);
+
+		if($messages->num_rows() > 0)
+		{
+			return $messages->result();
+		}else
+		{
+			return NULL;
+		}
 	}
 }
 

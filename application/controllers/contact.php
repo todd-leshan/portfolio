@@ -16,17 +16,25 @@ class Contact extends CI_Controller
 
 	function index()
 	{		
+		$this->load->library('pagination');
+
+		$config['base_url']   = 'http://localhost/portfolio/index.php/contact/index';
 		$messages = $this->Message_Model->getMessage();
+		$config['total_rows'] = sizeof($messages);
+		$config['per_page']   = 5;
+		$config['num_links']  = 5;
+
+		$this->pagination->initialize($config);
 		
+		$messages = $this->Message_Model->getMessageForPagination($config['per_page'], $this->uri->segment(3));
 		$data = array(
-			'title'   =>'Leave a Message',
-			'messages'=>$messages,
-			'error1'  =>'No Message Yet!Be the first to leave a message!',
+			'title'       =>'Leave a Message',
+			'messages'    =>$messages,
+			'error1'      =>'No Message Yet!Be the first to leave a message!',
+			'main_content'=>'contact',
 		);
 
-		$this->load->view('header',$data);
-		$this->load->view('contact',$data);
-		$this->load->view('footer');
+		$this->load->view('page',$data);
 	}
 
 	function addMessage()

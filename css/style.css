@@ -1089,3 +1089,39 @@ td{
 {
 	color:#FFFFFF;
 }
+
+span#name
+{
+	font-weight: bolder;
+}
+
+/************************************************************/
+/*pagination*/
+#message
+{
+	padding-bottom: 10px;
+}
+
+#pagination
+{
+	text-align: center;
+}
+
+#pagination a,
+#pagination strong
+{
+	background-color: #e3e3e3;
+	padding: 4px 7px;
+	border: 1px solid #cac9c9;
+	color:#292929;
+}
+
+#pagination strong,
+#pagination a:hover
+{
+	background-color: #cac9c9;
+	color:#FFFFFF;
+}
+
+
+

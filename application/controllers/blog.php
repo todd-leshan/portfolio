@@ -12,14 +12,17 @@ class Blog extends CI_Controller
 		$this->load->model('Blog_Model');
 		$blogs = $this->Blog_Model->getBlog();
 		$data = array(
-			'title'   =>"Todd's portfolio - Blog",
-			'blogs'   =>$blogs,
-			'error2'  =>'No blogs yet!',
+			'title'       =>"Todd's portfolio - Blog",
+			'blogs'       =>$blogs,
+			'error2'      =>'No blogs yet!',
+			'main_content'=>'blog',
+			
 		);
 
-		$this->load->view('header',$data);
-		$this->load->view('blog',$data);
-		$this->load->view('footer');
+		//$this->load->view('header',$data);
+		//$this->load->view('blog',$data);
+		//$this->load->view('footer');
+		$this->load->view('page',$data);
 //need to do something later to make a pagination page
 	}
 }

@@ -22,7 +22,20 @@ echo $title;
 <div id="navTop">
 	<nav  id="mainMenu">
         <ul>
-            <li><a href="<?php echo site_url().'/login'; ?>" id="login">Login</a></li>
+            <?php 
+                if($this->session->userdata('authorized'))
+                {
+            ?>
+                <li><a href="<?php echo site_url().'/admin/logout'; ?>" id="login">Logout</a></li>
+            <?php        
+                }
+                else
+                {
+            ?>
+                <li><a href="<?php echo site_url().'/admin'; ?>" id="login">Login</a></li>
+            <?php
+                }
+            ?>
             <li><a href="<?php echo base_url().'index.html'; ?>" class="menu">&nbsp;Home&nbsp;</a></li>
             <li><a href="<?php echo base_url().'portfolio.html';?>" class="menu">&nbsp;Portfolio&nbsp;</a></li>
             <li><a href="<?php echo base_url().'resume.html';?>" class="menu">&nbsp;Resume&nbsp;</a></li>
@@ -30,8 +43,8 @@ echo $title;
             <li><a href="<?php echo base_url().'javascript.html';?>" class="menu">&nbsp;JavaScript&nbsp;</a></li>
             <li><a href="<?php echo site_url().'/contact'; ?>" class="menu">&nbsp;Contact&nbsp;</a></li>
             <li><a href="<?php echo site_url().'/blog'; ?>" class="menu">&nbsp;Blog&nbsp;</a></li>
-            <li><a href="https://www.facebook.com/profile.php?id=100003341051989"><img src="images/facebook.png" alt="facebook" class="social" /></a></li>
-            <li><a href="https://twitter.com/LeshanTodd"><img src="images/Twitter_logo_blue.png" alt="twitter" class="social" /></a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=100003341051989"><img src="<?php echo base_url().'/images/facebook.png'; ?>" alt="facebook" class="social" /></a></li>
+            <li><a href="https://twitter.com/LeshanTodd"><img src="<?php echo base_url().'/images/Twitter_logo_blue.png'; ?>" alt="twitter" class="social" /></a></li>
         </ul>
 	</nav>
 </div>

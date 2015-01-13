@@ -15,7 +15,7 @@
     </div>
     <div class="contact">
     	<label for="txtPhone">Phone number:</label>
-        <input type="number" id="txtPhone" name="txtPhone" />
+        <input type="text" id="txtPhone" name="txtPhone" />
         <span id="error2" class="error"></span>
     </div>
     <div class="contact">
@@ -40,14 +40,15 @@
 <p>0466666666</p>
 <h4>Email:</h4>
 <p>example@example.com</p>
-<HR>
+<hr>
+<div id="message">
 <?php
 if($messages == NULL)
 {
     echo $error1;
 }else
 {
-    $messages =  array_reverse($messages);
+    //$messages =  array_reverse($messages);
     foreach($messages as $message)
     {
         $message = get_object_vars($message);
@@ -56,8 +57,8 @@ if($messages == NULL)
         $date    = $message['date'];
 ?>
 <p>
-    <?php echo $name; ?>
-    &nbsp left at &nbsp
+    <span id="name"><?php echo $name; ?></span>
+    &nbsp -- &nbsp
     <?php echo $date; ?>
 </p>
 <h4>
@@ -69,6 +70,11 @@ if($messages == NULL)
 }
 ?>
 
-
+    <div id="pagination">
+    <?php
+    echo $this->pagination->create_links();
+    ?>
+    </div>
+</div>
 <!-- InstanceEndEditable -->
 </div>
