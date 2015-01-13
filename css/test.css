@@ -1,0 +1,58 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,div{
+	margin:0;
+	padding:0;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+
+
+#box1{
+	width:200px;
+	height:100px;
+	background-color:pink;
+}
+
+div#box2{
+	width:200px;
+	height:100px;
+	background-color:yellow;
+	position:absolute;
+/*position:relative;
+	left:5%;
+	top:150px;*/
+}
+
+div#box2-1{
+	width:50%;
+	height:50%;
+	background-color:blue;
+	position:absolute;
+	top:-20px;
+	right:20px;
+	
+}
+
+div#box3{
+	width:200px;
+	height:100px;
+	background-color:green;
+}
+
+
+header{
+	width:25%;
+	height:50px;
+	background-color:pink;
+}
+
+div{
+	width:30%;
+	height:100px;
+	background-color:yellow;
+	margin-top:10px;
+}
