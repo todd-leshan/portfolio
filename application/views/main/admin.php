@@ -1,6 +1,6 @@
 <div id="wrapper">
 
-<form id="addBlog" action="<?php echo site_url().'admin/addBlog'; ?>" method="post">
+<form id="addBlog" action="<?php echo site_url().'/admin/addBlog'; ?>" method="post">
 	<h3>Post new article:</h3>
 	<span class="error">
 		<?php echo validation_errors(); ?>

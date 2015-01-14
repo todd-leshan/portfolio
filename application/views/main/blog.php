@@ -12,6 +12,7 @@ else
 		$blog    = get_object_vars($blog);
 		$title   = $blog['title'];
 		$content = $blog['content'];
+		$content = str_replace("\n","<br>",$content);
 		$date    = $blog['date'];
 ?>
 	<h3>

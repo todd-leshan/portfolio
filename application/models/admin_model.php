@@ -21,6 +21,18 @@ class Admin_Model extends CI_Model
 			return false;
 		}
 	}
+
+	function addBlog($title, $content)
+	{
+		$new_blog = array(
+			'title'  =>$title,
+			'content'=>$content,
+		);
+
+		$this->db->insert('blog',$new_blog);
+
+
+	}
 }
 
 ?>

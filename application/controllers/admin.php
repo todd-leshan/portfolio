@@ -86,6 +86,29 @@ class Admin extends CI_Controller
 		$this->session->unset_userdata('authorized');
 		redirect(base_url().'index.html','refresh');
 	}
+
+	function addBlog()
+	{
+		$this->form_validation->set_rules('title','Title:','xss_clean|trim|required|max_length[30]');
+		$this->form_validation->set_rules('content','Content:','xss_clean|trim|required');
+
+		if($this->form_validation->run())
+		{
+			$this->load->model('Admin_Model');
+
+			$title   = $this->input->post('title');
+			$content = $this->input->post('content');
+
+			$this->Admin_Model->addBlog($title, $content);
+
+			$data = array(
+				'title' => 'Portfolio Admin Page',
+				'main_content'=>'admin',
+			);
+			
+			$this->load->view('page',$data);
+		}
+	}
 }
 
 ?>

@@ -27,6 +27,7 @@ echo $title;
                 {
             ?>
                 <li><a href="<?php echo site_url().'/admin/logout'; ?>" id="login">Logout</a></li>
+                <li><a href="<?php echo site_url().'/admin/personal'; ?>" id="login">Admin</a></li>
             <?php        
                 }
                 else
