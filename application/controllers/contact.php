@@ -26,12 +26,14 @@ class Contact extends CI_Controller
 
 		$this->pagination->initialize($config);
 		
-		$messages = $this->Message_Model->getMessageForPagination($config['per_page'], $this->uri->segment(3));
+		$messages   = $this->Message_Model->getMessageForPagination($config['per_page'], $this->uri->segment(3));
+		$pagination = $this->pagination->create_links();
 		$data = array(
 			'title'       =>'Leave a Message',
 			'messages'    =>$messages,
 			'error1'      =>'No Message Yet!Be the first to leave a message!',
 			'main_content'=>'contact',
+			'pagination'  =>$pagination,
 		);
 
 		$this->load->view('page',$data);

@@ -742,11 +742,11 @@ label{
 	text-align:left;
 }
 
-th{
+#sitemap th{
 	width:30%;
 }
 
-td{
+#sitemap td{
 	height:2em;
 }
 
@@ -1123,5 +1123,87 @@ span#name
 	color:#FFFFFF;
 }
 
+/*************************************************************/
+/*blog page*/
+.blog_list
+{
+	height: 150px;
+	overflow: hidden;
+}
 
+p#more
+{
+	text-align: right;
+	font-size: 1em;
+}
 
+p#more:hover,
+p#more:active
+{
+	color:#FFFFFF;
+	cursor:pointer;
+}
+
+a
+{
+	text-decoration: none;
+	color:#000000;
+}
+
+a:hover,
+a:active
+{
+	color:#FFFFFF;
+}
+
+#blog_nav
+{
+	text-align: right;
+}
+
+.hidden
+{
+	visibility: hidden;
+}
+
+/*************************************************************************/
+/*for calendar page*/
+#calendar
+{
+	font-family: Arial;
+	font-size: 1em;
+}
+
+#calendar table
+{
+	margin: auto;
+	border-collapse: collapse;
+}
+
+#calendar .days td
+{
+	width:100px;
+	height: 100px;
+	padding: 4px;
+	border: 2px silid #000000;
+	vertical-align: top;
+	background-color: #DEF;
+}
+
+#calendar .days td:hover
+{
+	background-color: #FFFFFF;
+}
+
+#calendar .highlight
+{
+	font-weight: bolder;
+	color: #FF0000;
+	font-size: 1.5em;
+}
+
+#calendar .cal_head
+{
+	font-size: 2em;
+	font-weight: bolder;
+}

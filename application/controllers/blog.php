@@ -2,28 +2,49 @@
 
 class Blog extends CI_Controller
 {
+	var $data;
+
 	function __construct()
 	{
 		parent::__construct();
+
+		$this->data = array(
+			'title'       =>"Todd's portfolio - Blog",
+			'error2'      =>'No blogs found!Please try later!',
+			'error'       =>'Error found!Please try later!',
+			'main_content'=>'blog',
+			
+		);
+		$this->load->model('Blog_Model');
 	}
 
 	function index()
 	{
-		$this->load->model('Blog_Model');
 		$blogs = $this->Blog_Model->getBlog();
-		$data = array(
-			'title'       =>"Todd's portfolio - Blog",
-			'blogs'       =>$blogs,
-			'error2'      =>'No blogs yet!',
-			'main_content'=>'blog',
-			
-		);
 
-		//$this->load->view('header',$data);
-		//$this->load->view('blog',$data);
-		//$this->load->view('footer');
-		$this->load->view('page',$data);
+		$this->data['blogs'] = $blogs;
+
+		$this->load->view('page',$this->data);
 //need to do something later to make a pagination page
+	}
+
+	function read($blog_title)
+	{
+		$blog = $this->Blog_Model->getBlogByTitle($blog_title);
+		$this->data['blogs'] = $blog;
+		$this->load->view('page',$this->data);
+	}
+
+	function getPrev($blogID)
+	{
+		$blog_title = $this->Blog_Model->getPrev($blogID);
+		$this->read($blog_title);
+	}
+
+	function getNext($blogID)
+	{
+		$blog_title = $this->Blog_Model->getNext($blogID);
+		$this->read($blog_title);
 	}
 }
 

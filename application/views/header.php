@@ -42,8 +42,15 @@ echo $title;
             <li><a href="<?php echo base_url().'resume.html';?>" class="menu">&nbsp;Resume&nbsp;</a></li>
             <li><a href="<?php echo base_url().'portfolio.html';?>" class="menu">&nbsp;HTML/CSS&nbsp;</a></li>
             <li><a href="<?php echo base_url().'javascript.html';?>" class="menu">&nbsp;JavaScript&nbsp;</a></li>
-            <li><a href="<?php echo site_url().'/contact'; ?>" class="menu">&nbsp;Contact&nbsp;</a></li>
-            <li><a href="<?php echo site_url().'/blog'; ?>" class="menu">&nbsp;Blog&nbsp;</a></li>
+            <li><a href="<?php echo site_url('contact'); ?>" class="menu">&nbsp;Contact&nbsp;</a></li>
+            <li><a href="<?php echo site_url('blog'); ?>" class="menu">&nbsp;Blog&nbsp;</a></li>
+
+            <?php 
+                if($this->session->userdata('authorized')):
+            ?>
+                <li><a href="<?php echo site_url('admin/calendar'); ?>" class="menu">&nbsp;Calendar&nbsp;</a></li>
+            <?php endif; ?>
+
             <li><a href="https://www.facebook.com/profile.php?id=100003341051989"><img src="<?php echo base_url().'/images/facebook.png'; ?>" alt="facebook" class="social" /></a></li>
             <li><a href="https://twitter.com/LeshanTodd"><img src="<?php echo base_url().'/images/Twitter_logo_blue.png'; ?>" alt="twitter" class="social" /></a></li>
         </ul>

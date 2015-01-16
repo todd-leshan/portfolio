@@ -1,6 +1,6 @@
 <div id="wrapper">
 <!-- InstanceBeginEditable name="EditRegion3" -->
-<form id="contact" action="<?php echo site_url().'/contact/addMessage'?>" method="post">
+<form id="contact" action="<?php echo site_url('contact/addMessage'); ?>" method="post">
 <fieldset>
 <legend>Leave a message:</legend>
 <span>Fields with * must be filled</span>
@@ -68,13 +68,17 @@ if($messages == NULL)
 <?php
     }
 }
+if(strlen($pagination)):
 ?>
 
     <div id="pagination">
     <?php
-    echo $this->pagination->create_links();
+    echo $pagination;
     ?>
     </div>
+<?php
+endif;   
+?>
 </div>
 <!-- InstanceEndEditable -->
 </div>

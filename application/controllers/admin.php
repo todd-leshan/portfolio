@@ -2,26 +2,30 @@
 
 class Admin extends CI_Controller
 {
+	var $data;
+
+	function __construct()
+	{
+		parent::__construct();
+
+		$this->data = array(
+			'title'       =>'Portfolio Admin Page',
+			'error3'      =>'',
+			'main_content'=>'admin',
+		);
+	}
+
 	function index()
 	{
 		if($this->session->userdata('authorized') == 'TRUE')
 		{
-			$data = array(
-					'title'       => 'Portfolio Admin Page',
-					'main_content'=>'admin',
-			);
-
-			$this->load->view('page',$data);
+			$this->load->view('page',$this->data);
 		}
 
-		$data = array(
-			'title'       =>"Todd's portfolio",
-			'error3'      =>'',
-			'main_content'=>'login_form',
-
-		);
-
-		$this->load->view('page',$data);
+		$this->data['title'] = "Todd's portfolio";
+		$this->data['main_content'] = 'login_form';
+		
+		$this->load->view('page',$this->data);
 	}
 
 	function personal()
@@ -29,12 +33,7 @@ class Admin extends CI_Controller
 		//$this->load->library('session');
 		if($this->session->userdata('authorized') == 'TRUE')
 		{
-			$data = array(
-					'title' => 'Portfolio Admin Page',
-					'main_content'=>'admin',
-			);
-
-			$this->load->view('page',$data);
+			$this->load->view('page',$this->data);
 		}
 		//$this->load->library('form_validation');
 
@@ -50,27 +49,22 @@ class Admin extends CI_Controller
 			$result = $this->Admin_Model->login_process($username,$password);
 			if($result)
 			{
-				$data = array(
-					'title' => 'Portfolio Admin Page',
-					'main_content'=>'admin',
-				);
-
 				$user = array(
 					'authorized'=>TRUE,
 				);
 
 				$this->session->set_userdata($user);
-				$this->load->view('page',$data);
+				$this->load->view('page',$this->data);
 			}
 			else
 			{
-				$data = array(
+				$this->data = array(
 					'title'       =>"Todd's portfolio",
 					'error3'      =>'Invalid username or password!',
 					'main_content'=>'login_form',
 				);
 
-				$this->load->view('page',$data);
+				$this->load->view('page',$this->data);
 				}
 		}
 		else
@@ -101,13 +95,18 @@ class Admin extends CI_Controller
 
 			$this->Admin_Model->addBlog($title, $content);
 
-			$data = array(
-				'title' => 'Portfolio Admin Page',
-				'main_content'=>'admin',
-			);
-			
-			$this->load->view('page',$data);
+			$this->load->view('page',$this->data);
 		}
+	}
+
+	function calendar($year = null, $month = null)
+	{
+		$this->load->model('Calendar_Model');
+		$this->data['calendar']     = $this->Calendar_Model->generate($year, $month);
+
+		$this->data['main_content'] = 'calendar';
+
+		$this->load->view('page',$this->data);
 	}
 }
 
