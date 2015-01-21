@@ -7,10 +7,12 @@ class Admin extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-
+		$this->load->model(array('Message_Model','Blog_Model'));
 		$this->data = array(
 			'title'       =>'Portfolio Admin Page',
-			'error3'      =>'',
+			'error1'      =>'No Message Yet!',
+			'error2'      =>'No blogs found!',
+ 			'error3'      =>'',
 			'main_content'=>'admin',
 		);
 	}
@@ -107,6 +109,61 @@ class Admin extends CI_Controller
 		$this->data['main_content'] = 'calendar';
 
 		$this->load->view('page',$this->data);
+	}
+
+	function manageMessage()
+	{
+		$this->load->library('pagination');
+
+		$config['base_url']   = 'http://localhost/portfolio/admin/manageMessage';
+		$messages = $this->Message_Model->getMessage();
+		$config['total_rows'] = sizeof($messages);
+		$config['per_page']   = 5;
+		$config['num_links']  = 5;
+
+		$this->pagination->initialize($config);
+		
+		$messages   = $this->Message_Model->getMessageForPagination($config['per_page'], $this->uri->segment(3));
+		$pagination = $this->pagination->create_links();
+
+		$this->data['main_content'] = 'manageMessage';
+		$this->data['messages']     = $messages;
+		$this->data['pagination']   = $pagination;
+		$this->load->view('page',$this->data);
+	}
+
+	function deleteMessage($messageID)
+	{
+		$this->Message_Model->deleteMessageByID($messageID);
+		redirect('admin/manageMessage',refresh);
+	}
+
+	function manageBlog()
+	{
+		$this->load->library('pagination');
+
+		$config['base_url']   = 'http://localhost/portfolio/blog/index';
+		$blogs = $this->Blog_Model->getBlog();
+		$config['total_rows'] = sizeof($blogs);
+		$config['per_page']   = 5;
+		$config['num_links']  = 5;
+
+		$this->pagination->initialize($config);
+
+		$blogs = $this->Blog_Model->getBlogForPagination($config['per_page'], $this->uri->segment(3));
+		$pagination = $this->pagination->create_links();
+
+		$this->data['main_content'] = 'manageBlog';
+		$this->data['blogs']      = $blogs;
+		$this->data['pagination'] = $pagination;
+
+		$this->load->view('page',$this->data);
+	}
+
+	function deleteBlog($blogID)
+	{
+		$this->Blog_Model->deleteBlogByID($blogID);
+		redirect('admin/manageBlog',refresh);
 	}
 }
 

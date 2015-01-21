@@ -47,6 +47,11 @@ class Message_Model extends CI_Model
 			return NULL;
 		}
 	}
+
+	function deleteMessageByID($messageID)
+	{
+		$this->db->delete('message',array('messageID'=>$messageID));
+	}
 }
 
 ?>

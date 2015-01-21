@@ -20,12 +20,8 @@ else if(count($blogs) == 1)
 		<a href="<?php echo site_url().'blog/getPrev/'.$blog->blogID; ?>">Prev</a>
 <?php
 	endif;
-	if($this->session->userdata('authorized')):
 ?>
 		<a href="<?php echo site_url('admin/manageBlog'); ?>">List</a>
-<?php else: ?>
-		<a href="<?php echo site_url('blog'); ?>">List</a>
-<?php endif; ?>
 <?php 
 	if($maxID != $blog->blogID)
 	{
@@ -42,6 +38,8 @@ else if(count($blogs) == 1)
 ?>
 	</div>
 	<h3>
+		<span class="manage_delete"><a href="<?php echo site_url().'admin/deleteBlog/'.$blog->blogID;?>">Delete?</a>
+		</span>
 		<?php echo $blog->title; ?>
 	</h3>
 	<p>
@@ -55,15 +53,17 @@ else if(count($blogs) == 1)
 }
 else
 {
-	//$blogs = array_reverse($blogs);
 	foreach($blogs as $blog):
 		$blog    = get_object_vars($blog);
+		$blogID  = $blog['blogID'];
 		$title   = $blog['title'];
 		$content = $blog['content'];
 		$content = str_replace("\n","<br>",$content);
 		$date    = $blog['date'];
 ?>
 <div class="blog_list">
+	<span class="manage_delete"><a href="<?php echo site_url().'admin/deleteBlog/'.$blogID;?>">Delete?</a>
+	</span>
 	<h3>
 		<a href="<?php echo site_url().'blog/read/'.$title; ?>"><?php echo $title; ?></a>
 	</h3>
@@ -75,20 +75,11 @@ else
 	</p>
 </div>
 <p id="more">
-	<a href="<?php echo site_url().'blog/read/'.$title; ?>">
 	click to see more...
-	</a>
 </p>
 	<hr>
 <?php
 	endforeach;
 }
-	if(strlen($pagination)):
-?>
-	<div id="pagination">
-	<?php echo $pagination?>
-	</div>
-<?php
-	endif;
 ?>
 </div>

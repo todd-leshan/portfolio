@@ -26,14 +26,14 @@ echo $title;
                 if($this->session->userdata('authorized'))
                 {
             ?>
-                <li><a href="<?php echo site_url().'/admin/logout'; ?>" id="login">Logout</a></li>
-                <li><a href="<?php echo site_url().'/admin/personal'; ?>" id="login">Admin</a></li>
+                <li><a href="<?php echo site_url('admin/logout'); ?>" id="login">Logout</a></li>
+                <li><a href="<?php echo site_url('admin/personal'); ?>" id="login">Admin</a></li>
             <?php        
                 }
                 else
                 {
             ?>
-                <li><a href="<?php echo site_url().'/admin'; ?>" id="login">Login</a></li>
+                <li><a href="<?php echo site_url('admin'); ?>" id="login">Login</a></li>
             <?php
                 }
             ?>

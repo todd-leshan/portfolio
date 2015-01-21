@@ -8,17 +8,11 @@ class Contact extends CI_Controller
 		$this->load->model('Message_Model');
 	}
 
-	/*
-	static $data = array(
-		'title'=>"leave me a message",
-	);
-	*/
-
 	function index()
 	{		
 		$this->load->library('pagination');
 
-		$config['base_url']   = 'http://localhost/portfolio/index.php/contact/index';
+		$config['base_url']   = 'http://localhost/portfolio/contact/index';
 		$messages = $this->Message_Model->getMessage();
 		$config['total_rows'] = sizeof($messages);
 		$config['per_page']   = 5;

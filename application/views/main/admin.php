@@ -14,5 +14,9 @@
 	<br>
 	<button type="submit" name="post" id="post">Post</button>
 </form>
-<div><a href="<?php echo site_url('admin/manageMessage'); ?>">Manage Message</a></div>
+<br>
+	<div id="manage">
+		<a href="<?php echo site_url('admin/manageMessage'); ?>">Manage Message</a>
+		<a href="<?php echo site_url('admin/manageBlog'); ?>">Manage Blog</a>
+	</div>
 </div>

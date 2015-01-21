@@ -20,9 +20,21 @@ class Blog extends CI_Controller
 
 	function index()
 	{
-		$blogs = $this->Blog_Model->getBlog();
+		$this->load->library('pagination');
 
-		$this->data['blogs'] = $blogs;
+		$config['base_url']   = 'http://localhost/portfolio/blog/index';
+		$blogs = $this->Blog_Model->getBlog();
+		$config['total_rows'] = sizeof($blogs);
+		$config['per_page']   = 5;
+		$config['num_links']  = 5;
+
+		$this->pagination->initialize($config);
+
+		$blogs = $this->Blog_Model->getBlogForPagination($config['per_page'], $this->uri->segment(3));
+		$pagination = $this->pagination->create_links();
+
+		$this->data['blogs']      = $blogs;
+		$this->data['pagination'] = $pagination;
 
 		$this->load->view('page',$this->data);
 //need to do something later to make a pagination page
@@ -31,7 +43,8 @@ class Blog extends CI_Controller
 	function read($blog_title)
 	{
 		$blog = $this->Blog_Model->getBlogByTitle($blog_title);
-		$this->data['blogs'] = $blog;
+		$this->data['blogs']      = $blog;
+		$this->data['pagination'] = '';
 		$this->load->view('page',$this->data);
 	}
 

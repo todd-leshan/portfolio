@@ -29,29 +29,7 @@ class Blog_Model extends CI_Model
 
 		$this->session->set_userdata($id_set);
 	}
-/*
-	function getMaxID()
-	{
-		$this->db->select_max('blogID')->from('blog');
-		$q = $this->db->get();
-		$r = $q->result();
-		$id = $r[0];
-		$maxID = $id->blogID;
 
-		return $maxID;
-	}
-
-	function getMinID()
-	{
-		$this->db->select_min('blogID')->from('blog');
-		$q = $this->db->get();
-		$r = $q->result();
-		$id = $r[0];
-		$minID = $id->blogID;
-
-		return $minID;
-	}
-*/
 	function getBlog()
 	{
 		$blogs = $this->db->get('blog');
@@ -111,6 +89,26 @@ class Blog_Model extends CI_Model
 		$title = $t[0];
 
 		return $title->title;
+	}
+
+	function getBlogForPagination($num_per_page, $offset)
+	{
+		
+		$this->db->order_by('blogID','DESC');
+		$blogs = $this->db->get('blog', $num_per_page, $offset);
+
+		if($blogs->num_rows() > 0)
+		{
+			return $blogs->result();
+		}else
+		{
+			return NULL;
+		}
+	}
+
+	function deleteBlogByID($blogID)
+	{
+		$this->db->delete('blog',array('blogID'=>$blogID));
 	}
 }
 
